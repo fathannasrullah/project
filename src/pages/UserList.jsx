@@ -18,7 +18,7 @@ const UserList = () => {
   // get global state and dispatch function from store
   const dispatch = useDispatch()
   const { statusRequest, userListData } = useSelector(state => state.user)
-
+  
   // get user list data from global state
   let {
     page,
@@ -37,8 +37,8 @@ const UserList = () => {
   const nextPage = ( page < totalPage )
 
   useEffect(() => {
-    dispatch(getUserList())
-  }, [dispatch])
+    if (isEmpty(userList)) dispatch(getUserList())
+  }, [userList, dispatch])
 
   return (
     <>
@@ -50,7 +50,7 @@ const UserList = () => {
       {!isEmpty(userList) && <List list={userList} />}
       
       {userListLoading 
-        ? <Typography>Loading..</Typography>
+        ? <Typography textAlign='center'>Loading..</Typography>
         : !userListFailed && 
           <Box textAlign='center'>
             <Button
@@ -58,7 +58,7 @@ const UserList = () => {
               variant='contained'
               disabled={!nextPage}
             >
-              Load More
+              {nextPage ? 'Load More' : 'No More Content'}
             </Button>
           </Box>
       }

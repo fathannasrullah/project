@@ -33,7 +33,12 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     // get user list
     builder.addCase(getUserList.fulfilled, (state, action) => {
-      state[SLICE_NAME_USER_LIST] = action.payload[SLICE_NAME_USER_LIST]
+      state[SLICE_NAME_USER_LIST] = action.payload[SLICE_NAME_USER_LIST].page === 1
+        ? action.payload[SLICE_NAME_USER_LIST]
+        : {
+            ...action.payload[SLICE_NAME_USER_LIST],
+            data: [...state[SLICE_NAME_USER_LIST].data, ...action.payload[SLICE_NAME_USER_LIST].data]
+          }
       state.statusRequest = STATUS_REQUEST_LIST_USER_SUCCESS
     }),
     builder.addCase(getUserList.pending, (state) => {
