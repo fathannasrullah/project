@@ -1,6 +1,11 @@
-.loginContainer {
-  max-width: 500px;
-  margin: auto;
-  border-radius: 30px!important;
-  box-shadow: 0px 11px 15px -7px rgba(58, 53, 65, 0.2)!important;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  .loginContainer {
+    max-width: 500px;
+    border-radius: 30px!important;
+    box-shadow: 0px 11px 15px -7px rgba(58, 53, 65, 0.2)!important;
+  }
 }

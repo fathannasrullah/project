@@ -1,4 +1,4 @@
-import { Card } from '@mui/material'
+import { Box, Card } from '@mui/material'
 
 import Form from '../components/Form'
 
@@ -24,14 +24,16 @@ const Login = () => {
   }
 
   return (
-    <Card className={styles.loginContainer}>
-      <Form
-        inputs={inputs}
-        btnText='Login'
-        onSubmit={handleSubmit}
-        linkTo='/users'
-      />
-    </Card>
+    <Box className={styles.container}>
+      <Card className={styles.loginContainer}>
+        <Form
+          inputs={inputs}
+          btnText='Login'
+          onSubmit={handleSubmit}
+          linkTo='/users'
+        />
+      </Card>
+    </Box>
   )
 }
 
