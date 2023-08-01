@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Button, Typography } from '@mui/material'
+import { AppBar, Box, Button, Typography } from '@mui/material'
 
 import { isEmpty } from 'lodash'
 
@@ -11,10 +11,13 @@ import { STATUS_REQUEST_LIST_USER_PENDING, STATUS_REQUEST_LIST_USER_FAILED } fro
 
 import List from '../components/List'
 import BackButton from '../components/BackButton'
+import HideOnScroll from '../components/HideOnScroll'
 
 import Error404 from './404'
 
-const UserList = () => {
+import styles from './UserList.module.scss'
+
+const UserList = (props) => {
   // get global state and dispatch function from store
   const dispatch = useDispatch()
   const { statusRequest, userListData } = useSelector(state => state.user)
@@ -41,10 +44,14 @@ const UserList = () => {
   }, [userList, dispatch])
 
   return (
-    <>
-      <Box component='header' mb={1}>
-        <BackButton />
-      </Box>
+    <Box mt={6}>
+      <HideOnScroll {...props}>
+        <AppBar className={styles.containerAppBar}>
+          <Box>
+            <BackButton />
+          </Box>
+        </AppBar>
+      </HideOnScroll>
       {userListFailed && <Error404 />}
       
       {!isEmpty(userList) && <List list={userList} />}
@@ -62,7 +69,7 @@ const UserList = () => {
             </Button>
           </Box>
       }
-    </>
+    </Box>
   )
 }
 
