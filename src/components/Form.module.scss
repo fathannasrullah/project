@@ -1,0 +1,29 @@
+$textSecondary: rgba(58, 53, 65, 0.68);
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 35px;
+  .heading {
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+  .subHeading {
+    text-align: left;
+    font-weight: 600;
+  }
+  .formControl {
+    margin: 20px 0;
+  }
+  .body2 {
+    line-height: 1.5;
+    letter-spacing: 0.15px;
+    color: $textSecondary;
+  }
+  .button {
+    padding: 10px;
+    background-color: #946fde!important;
+  }
+}

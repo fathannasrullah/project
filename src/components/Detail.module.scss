@@ -1,0 +1,22 @@
+$textSecondary: rgba(58, 53, 65, 0.68);
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  border-radius: 30px!important;
+  box-shadow: 0px 11px 15px -7px rgba(58, 53, 65, 0.2)!important;
+  .media {
+    height: 400px;
+  }
+  .button {
+    background-color: #946fde!important;
+  }
+  .body2 {
+    line-height: 1.5!important;
+    letter-spacing: 0.15px!important;
+    color: $textSecondary!important;
+  }
+  .avatar {
+    box-shadow: 0px 11px 15px -7px rgba(58, 53, 65, 0.5)!important;
+  }
+}
