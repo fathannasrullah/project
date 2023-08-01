@@ -23,7 +23,7 @@ root.render(
     <StrictMode>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.DEV ? '/' : '/project'}>
           <App />
         </BrowserRouter>
       </ThemeProvider>
