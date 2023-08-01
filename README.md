@@ -39,11 +39,11 @@ This is a simple SPA. The application contains 3 pages namely Login, User List a
 
 1. clone repository
     ```
-        $ git clone https://github
+        $ git clone https://github.com/fathannasrullah/project.git
     ```
     *change your directory to project directory*
     ```
-        $ cd cutomer-app
+        $ cd customer-app
     ```
     *note: make sure your directory project is correct*
 2. Install dependencies
