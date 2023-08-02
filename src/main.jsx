@@ -11,7 +11,7 @@ import store from './store/index.js'
 
 import App from './App.jsx'
 
-import theme from './theme.js'
+import theme from './utils/configs/theme.js'
 
 import './styles/_global.scss'
 
