@@ -2,3 +2,13 @@
   background: #fff!important;
   padding: 10px 20px;
 }
+
+.button {
+  color: #fff!important;
+  background-color: #946fde!important;
+}
+
+.button:disabled {
+  color: rgba(58, 53, 65, 0.68)!important;
+  background-color: #fff!important;
+}
