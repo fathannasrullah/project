@@ -19,8 +19,8 @@ import { getUserDetail, getUserList } from './action'
 
 const initialState = {
   statusRequest: STATUS_REQUEST_BASE_IDDLE,
-  [SLICE_NAME_USER_LIST]: [],
-  [SLICE_NAME_USER_DETAIL]: null,
+  [SLICE_NAME_USER_LIST]: {},
+  [SLICE_NAME_USER_DETAIL]: {},
 }
 
 const userSlice = createSlice({
@@ -34,7 +34,7 @@ const userSlice = createSlice({
     // get user list
     builder.addCase(getUserList.fulfilled, (state, action) => {
       state[SLICE_NAME_USER_LIST] = action.payload[SLICE_NAME_USER_LIST].page === 1
-        ? action.payload[SLICE_NAME_USER_LIST]
+        ? action.payload[SLICE_NAME_USER_LIST] || {}
         : {
             ...action.payload[SLICE_NAME_USER_LIST],
             data: [...state[SLICE_NAME_USER_LIST].data, ...action.payload[SLICE_NAME_USER_LIST].data]
@@ -45,19 +45,19 @@ const userSlice = createSlice({
       state.statusRequest = STATUS_REQUEST_LIST_USER_PENDING
     }),
     builder.addCase(getUserList.rejected, (state) => {
-      state[SLICE_NAME_USER_LIST] = []
+      state[SLICE_NAME_USER_LIST] = {}
       state.statusRequest = STATUS_REQUEST_LIST_USER_FAILED
     }),
     // get user detail
     builder.addCase(getUserDetail.fulfilled, (state, action) => {
-      state[SLICE_NAME_USER_DETAIL] = action.payload[SLICE_NAME_USER_DETAIL]
+      state[SLICE_NAME_USER_DETAIL] = action.payload[SLICE_NAME_USER_DETAIL] || {}
       state.statusRequest = STATUS_REQUEST_DETAIL_USER_SUCCESS
     }),
     builder.addCase(getUserDetail.pending, (state) => {
       state.statusRequest = STATUS_REQUEST_DETAIL_USER_PENDING
     }),
     builder.addCase(getUserDetail.rejected, (state) => {
-      state[SLICE_NAME_USER_DETAIL] = null
+      state[SLICE_NAME_USER_DETAIL] = {}
       state.statusRequest = STATUS_REQUEST_DETAIL_USER_FAILED
     })
   }
