@@ -1,17 +1,18 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { AppBar, Box, Button, Typography } from '@mui/material'
+import { AppBar, Box, Button } from '@mui/material'
 
 import { isEmpty } from 'lodash'
 
 import { getUserList } from '../store/user/action'
 
-import { STATUS_REQUEST_LIST_USER_PENDING, STATUS_REQUEST_LIST_USER_FAILED } from '../utils/constants/status'
+import { STATUS_REQUEST_LIST_USER_PENDING, STATUS_REQUEST_LIST_USER_FAILED, STATUS_REQUEST_BASE_IDDLE, STATUS_REQUEST_LIST_USER_SUCCESS } from '../utils/constants/status'
 
 import List from '../components/List'
 import BackButton from '../components/BackButton'
 import HideOnScroll from '../components/HideOnScroll'
+import ListSkeleton from '../components/ListSkeleton'
 
 import Error404 from './404'
 
@@ -23,11 +24,16 @@ const UserList = (props) => {
   const { statusRequest, userListData } = useSelector(state => state.user)
   
   // get user list data from global state
-  let {
+  const {
     page,
     total_pages: totalPage,
-    data: userList,
+    data: userList = [],
   } = userListData
+
+  const userListIsSuccess = statusRequest === STATUS_REQUEST_LIST_USER_SUCCESS
+  const userListIsError = statusRequest === STATUS_REQUEST_LIST_USER_FAILED
+  const userListIsLoading = statusRequest === STATUS_REQUEST_LIST_USER_PENDING
+  const isNextPage = page < totalPage
 
   const handleMoreUser = () => {
     dispatch(getUserList({
@@ -35,13 +41,11 @@ const UserList = (props) => {
     }))
   }
 
-  const userListFailed = ( statusRequest === STATUS_REQUEST_LIST_USER_FAILED )
-  const userListLoading = ( statusRequest === STATUS_REQUEST_LIST_USER_PENDING )
-  const nextPage = ( page < totalPage )
-
   useEffect(() => {
-    if (isEmpty(userList)) dispatch(getUserList())
-  }, [userList, dispatch])
+    if (!isEmpty(userList) || userListIsSuccess || userListIsError) return 
+    
+    dispatch(getUserList())
+  }, [userList, userListIsSuccess, userListIsError, dispatch])
 
   return (
     <Box mt={6}>
@@ -52,20 +56,21 @@ const UserList = (props) => {
           </Box>
         </AppBar>
       </HideOnScroll>
-      {userListFailed && <Error404 />}
+      {userListIsError && <Error404 />}
       
-      {!isEmpty(userList) && <List list={userList} />}
+      <List list={userList} />
       
-      {userListLoading 
-        ? <Typography textAlign='center'>Loading..</Typography>
-        : !userListFailed && 
+      {userListIsLoading && isEmpty(userList)
+        ? <ListSkeleton listIsLoading={userListIsLoading} />
+        : !userListIsError && 
           <Box textAlign='center'>
             <Button
+              className={styles.button}
               onClick={handleMoreUser}
               variant='contained'
-              disabled={!nextPage}
+              disabled={!isNextPage}
             >
-              {nextPage ? 'Load More' : 'No More Content'}
+              {isNextPage ? 'Load More' : !isEmpty(userList) ? 'No More Content' : 'Data not found!'}
             </Button>
           </Box>
       }

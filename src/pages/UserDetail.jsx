@@ -3,16 +3,16 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { AppBar, Box } from '@mui/material'
+import { AppBar, Box, Button } from '@mui/material'
 
 import { isEmpty } from 'lodash'
 
 import { getUserDetail } from '../store/user/action'
+
 import { STATUS_REQUEST_DETAIL_USER_FAILED, STATUS_REQUEST_DETAIL_USER_PENDING } from '../utils/constants/status'
 
 import Detail from '../components/Detail'
 import BackButton from '../components/BackButton'
-import LoadingData from '../components/LoadingData'
 import HideOnScroll from '../components/HideOnScroll'
 
 import Error404 from './404'
@@ -24,24 +24,21 @@ const UserDetail = () => {
   const { id: userID } = useParams()
   // get global state and dispatch function from store
   const dispatch = useDispatch()
-  const {
-    userDetailData,
-    statusRequest,
-  } = useSelector((states) => states.user)
+  const { userDetailData, statusRequest } = useSelector((states) => states.user)
 
   // get user detail from global state
-  let userDetail = null
+  let userDetail = {}
   if (!isEmpty(userDetailData)) userDetail = userDetailData.data
 
   useEffect(() => {
     dispatch(getUserDetail(userID))
   }, [userID, dispatch])
 
-  const userDetailPending =  ( statusRequest === STATUS_REQUEST_DETAIL_USER_PENDING )
-  const userDetailFailed = ( statusRequest === STATUS_REQUEST_DETAIL_USER_FAILED )
+  const userDetailIsLoading = statusRequest === STATUS_REQUEST_DETAIL_USER_PENDING
+  const userDetailIsError = statusRequest === STATUS_REQUEST_DETAIL_USER_FAILED
 
   return (
-    <Box my={6}>
+    <Box mt={6}>
       <HideOnScroll>
         <AppBar className={styles.containerAppBar}>
           <Box>
@@ -49,11 +46,21 @@ const UserDetail = () => {
           </Box>
         </AppBar>
       </HideOnScroll>
-      {!isEmpty(userDetail) && !userDetailPending
-        ? <Detail detail={userDetail}/>
-        : <LoadingData isLoading={userDetailPending} />
+      {userDetailIsError && <Error404 />}
+      
+      {!isEmpty(userDetail) || userDetailIsLoading
+        ? <Detail detail={userDetail} detailIsLoading={userDetailIsLoading} />
+        : !userDetailIsError &&
+            <Box textAlign='center'>
+              <Button
+                className={styles.button}
+                variant='contained'
+                disabled={true}
+              >
+                Data not found!
+              </Button>
+            </Box>
       }
-      {userDetailFailed && <Error404 />}
     </Box>
   )
 }
