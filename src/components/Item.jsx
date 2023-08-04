@@ -13,14 +13,14 @@ import {
 
 import styles from './Item.module.scss'
 
-const Item = ({ id, avatar, first_name, email }) => {
+const Item = ({ id, avatar, first_name, email, listIsLoading }) => {
   const navigate = useNavigate()
 
   const handleCardClick = () => navigate(`/users/${id}`)
 
   return (
     <Card key={id} className={styles.container}>
-      <CardActionArea onClick={handleCardClick} disabled={!id} >
+      <CardActionArea onClick={handleCardClick} disabled={listIsLoading} >
         <CardContent>
           <ListItem>
             <ListItemAvatar>
