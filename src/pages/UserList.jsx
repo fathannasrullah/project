@@ -43,9 +43,9 @@ const UserList = (props) => {
 
   useEffect(() => {
     if (!isEmpty(userList) || userListIsSuccess || userListIsError) return 
-    
+
     dispatch(getUserList())
-  }, [userList, userListIsSuccess, userListIsError, dispatch])
+  }, [dispatch])
 
   return (
     <Box mt={6}>
