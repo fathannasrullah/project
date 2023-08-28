@@ -1,7 +1,7 @@
 # Simple SPA App
 
 # Demo 
-[Live Demo](https://fathannasrullah.github.io/project/)
+[Live Demo](https://fathannasrullah.github.io/social)
 
 # About Project 
 This is a simple SPA. The application contains 3 pages namely Login, User List and User Details. The data displayed comes from API https://reqres.in/
