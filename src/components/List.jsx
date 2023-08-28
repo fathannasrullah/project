@@ -1,14 +1,10 @@
-import { Grid } from '@mui/material'
+import { List as MUIList } from '@mui/material'
 
 import Item from './Item'
 
 const List = ({list}) => {
   return (
-    <Grid 
-      container 
-      flexDirection='columm'
-      justifyContent='center'
-    >
+    <MUIList sx={{ maxWidth: '600px', margin: '0 auto' }}>
       {list.map(({ id, avatar, first_name, email }) => (
         <Item
           id={id}
@@ -17,7 +13,7 @@ const List = ({list}) => {
           email={email}
         />
       ))}
-    </Grid>
+    </MUIList>
   )
 }
 
