@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { AppBar, Box, Button } from '@mui/material'
+import { AppBar, Box, Button, Typography } from '@mui/material'
 
 import { isEmpty } from 'lodash'
 
@@ -57,23 +57,26 @@ const UserList = (props) => {
         </AppBar>
       </HideOnScroll>
       {userListIsError && <Error404 />}
-      
+
       <List list={userList} />
       
-      {userListIsLoading && isEmpty(userList)
-        ? <ListSkeleton listIsLoading={userListIsLoading} />
-        : !userListIsError && 
-          <Box textAlign='center'>
-            <Button
-              className={styles.button}
-              onClick={handleMoreUser}
-              variant='contained'
-              disabled={!isNextPage}
-            >
-              {isNextPage ? 'Load More' : !isEmpty(userList) ? 'No More Content' : 'Data not found!'}
-            </Button>
-          </Box>
-      }
+      {userListIsLoading && isEmpty(userList) && <ListSkeleton listIsLoading={userListIsLoading} />}
+      {userListIsLoading && !isEmpty(userList) ? (
+        <Box textAlign='center'>
+          <Typography>Loading..</Typography>
+        </Box>
+      ) : ( !userListIsError && page > 0 &&
+        <Box textAlign='center'>
+          <Button
+            className={styles.button}
+            onClick={handleMoreUser}
+            variant='contained'
+            disabled={!isNextPage}
+          >
+            {isNextPage ? 'Load More' : 'No More Content'}
+          </Button>
+        </Box>
+      )}
     </Box>
   )
 }
