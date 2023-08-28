@@ -5,16 +5,16 @@ import { AppBar, Box, Button, Typography } from '@mui/material'
 
 import { isEmpty } from 'lodash'
 
-import { getUserList } from '../store/user/action'
+import { getUserList } from '../../store/user/action'
 
-import { STATUS_REQUEST_LIST_USER_PENDING, STATUS_REQUEST_LIST_USER_FAILED, STATUS_REQUEST_BASE_IDDLE, STATUS_REQUEST_LIST_USER_SUCCESS } from '../utils/constants/status'
+import { STATUS_REQUEST_LIST_USER_PENDING, STATUS_REQUEST_LIST_USER_FAILED, STATUS_REQUEST_BASE_IDDLE, STATUS_REQUEST_LIST_USER_SUCCESS } from '../../utils/constants/status'
 
-import List from '../components/List'
-import BackButton from '../components/BackButton/BackButton'
-import HideOnScroll from '../components/HideOnScroll'
-import ListSkeleton from '../components/ListSkeleton'
+import List from '../../components/List'
+import BackButton from '../../components/BackButton/BackButton'
+import HideOnScroll from '../../components/HideOnScroll'
+import ListSkeleton from '../../components/ListSkeleton'
 
-import Error404 from './404'
+import Error404 from '../404'
 
 import styles from './UserList.module.scss'
 

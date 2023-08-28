@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 
 import Login from './pages/Login/Login'
-import UserList from './pages/UserList'
-import UserDetail from './pages/UserDetail'
+import UserList from './pages/UserList/UserList'
+import UserDetail from './pages/UserDetail/UserDetail'
 import Error404 from './pages/404'
 
 const App = () => {
