@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import Login from './pages/Login'
+import Login from './pages/Login/Login'
 import UserList from './pages/UserList'
 import UserDetail from './pages/UserDetail'
 import Error404 from './pages/404'

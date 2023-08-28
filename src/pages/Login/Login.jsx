@@ -1,6 +1,6 @@
 import { Box, Card } from '@mui/material'
 
-import Form from '../components/Form'
+import Form from '../../components/Form'
 
 import styles from './Login.module.scss'
 
