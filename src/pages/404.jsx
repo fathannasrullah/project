@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 
-import BackButton from '../components/BackButton'
+import BackButton from '../components/BackButton/BackButton'
 
 const Error404 = () => {
   return (

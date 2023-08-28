@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 
-import Item from './Item'
+import Item from './Item/Item'
 
 const ListSkeleton = ({ listIsLoading }) => {
   return (

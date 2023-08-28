@@ -11,8 +11,8 @@ import { getUserDetail } from '../store/user/action'
 
 import { STATUS_REQUEST_DETAIL_USER_FAILED, STATUS_REQUEST_DETAIL_USER_PENDING } from '../utils/constants/status'
 
-import Detail from '../components/Detail'
-import BackButton from '../components/BackButton'
+import Detail from '../components/Detail/Detail'
+import BackButton from '../components/BackButton/BackButton'
 import HideOnScroll from '../components/HideOnScroll'
 
 import Error404 from './404'

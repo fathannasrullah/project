@@ -10,7 +10,7 @@ import { getUserList } from '../store/user/action'
 import { STATUS_REQUEST_LIST_USER_PENDING, STATUS_REQUEST_LIST_USER_FAILED, STATUS_REQUEST_BASE_IDDLE, STATUS_REQUEST_LIST_USER_SUCCESS } from '../utils/constants/status'
 
 import List from '../components/List'
-import BackButton from '../components/BackButton'
+import BackButton from '../components/BackButton/BackButton'
 import HideOnScroll from '../components/HideOnScroll'
 import ListSkeleton from '../components/ListSkeleton'
 

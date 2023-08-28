@@ -1,6 +1,6 @@
 import { List as MUIList } from '@mui/material'
 
-import Item from './Item'
+import Item from './Item/Item'
 
 const List = ({list}) => {
   return (
